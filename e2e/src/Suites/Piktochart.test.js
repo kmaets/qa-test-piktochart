@@ -13,8 +13,9 @@ import MainPageScene from '../Scenes/MainPageScene';
 import LoginScene from '../Scenes/LoginScene';
 import EditorScene from '../Scenes/EditorScene';
 import InfographicScene from '../Scenes/InfographicScene';
-import SidebarComponent from '../Components/SidebarComponent';
 import EditorNavigationComponent from '../Components/NavigationComponent/EditorNavigationComponent';
+import LogoutModalComponent from '../Components/LogoutModalComponent';
+import SidebarComponent from '../Components/SidebarComponent';
 import UserSettingComponent from '../Components/NavigationComponent/UserSettingComponent';
 
 describe('Test scenerio for https://piktochart.com', function () {
@@ -38,8 +39,9 @@ describe('Test scenerio for https://piktochart.com', function () {
         const login = new LoginScene(driver);
         const editor = new EditorScene(driver);
         const infographic = new InfographicScene(driver);
-        const sidebar = new SidebarComponent(driver);
         const editorNavigation = new EditorNavigationComponent(driver);
+        const logoutModal = new LogoutModalComponent(driver);
+        const sidebar = new SidebarComponent(driver);
         const userSetting = new UserSettingComponent(driver);
 
         await mainPage.goToURL();
@@ -53,7 +55,6 @@ describe('Test scenerio for https://piktochart.com', function () {
         expect(pageTitle).to.contain('Dashboard');
 
         await sidebar.clickSidebarElement('Infographic');
-     
         await infographic.searchTemplate();
         await infographic.selectThumbnail(2);
         await infographic.clickThumbnailButton('Use Template');
@@ -70,8 +71,8 @@ describe('Test scenerio for https://piktochart.com', function () {
         await editorNavigation.clickPreviewButton();
         await editor.waitForPreview();
 
-        await driver.sleep(1000);
         await userSetting.clickUserDropDown(); 
         await userSetting.logoutUser();
+        await logoutModal.confirmLogout();
     });
 });
