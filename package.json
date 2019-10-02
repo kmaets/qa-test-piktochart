@@ -4,9 +4,10 @@
   "description": "piktochart qa test",
   "main": "index.js",
   "scripts": {
-    "e2e-test": "mocha --require @babel/polyfill --require @babel/register --retries 2 e2e/**/*.test.js",
     "start-e2e-test": "npm install && npm run e2e-test",
-    "unit-test": "mocha --require @babel/polyfill --require @babel/register --retries 2 unit/**/*.unit.test.js"
+    "start-unit-test": "npm install && npm run unit-test",
+    "e2e-test": "mocha --require @babel/polyfill --require @babel/register --retries 2 e2e/**/*.test.js",
+    "unit-test": "mocha --require @babel/polyfill --require @babel/register src/**/*.spec.js"
   },
   "author": "ks",
   "license": "ISC",
